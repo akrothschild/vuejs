@@ -1,8 +1,20 @@
 <template>
   <div id="App">
     <Header />
-    <AddTodo v-on:add-todo="addTodo" />
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" v-on:complete-todo="completeTodo"/>
+    <AddTodo @add-todo="addTodo" />
+    <Todos
+      :todos="todos"
+      @del-todo="deleteTodo"
+      @complete-todo="completeTodo"
+    />
+
+    <!-- <input type="checkbox" :checked="isChecked" @up /> -->
+
+    <!-- <ul>
+      <li v-for="number in numbers" :key="number">
+        {{ number }}
+      </li>
+    </ul> -->
   </div>
 </template>
 
@@ -20,6 +32,8 @@ export default {
   },
   data() {
     return {
+      isChecked: true,
+      numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
       todos: [
         {
           id: 1,
@@ -40,12 +54,18 @@ export default {
     };
   },
   methods: {
+    toggleCheck() {},
     deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
+      this.todos = this.todos.filter((todo) => todo.id !== id);
     },
-    completeTodo () 
-    {
-      this.todos.completed = !this.todos.completed; 
+    completeTodo(todoId) {
+      let todo = this.todos.find((todo) => todo.id === todoId);
+
+      console.log(todo.completed);
+
+      todo.completed = !todo.completed;
+
+      console.log(todo.completed);
     },
     addTodo(newTodo) {
       this.todos = [...this.todos, newTodo];

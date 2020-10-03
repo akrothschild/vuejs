@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div :key="todo.id" v-for="todo in todos">
-      <TodoItem :todo="todo" @del-todo="$emit('del-todo', todo.id)" @complete-todo="$emit('complete-todo', todo.id)" />
-      
+    <div v-for="todo in todos" :key="todo.id">
+      <TodoItem
+        :todo="todo"
+        @del-todo="$emit('del-todo', todo.id)"
+        @complete-todo="$emit('complete-todo', $event)"
+      />
     </div>
   </div>
 </template>
@@ -11,11 +14,12 @@
 import TodoItem from "./TodoItem";
 
 export default {
-  name: "todos",
+  name: "Todos",
   components: {
     TodoItem,
   },
   props: ["todos"],
+  methods: {},
 };
 </script>
 
