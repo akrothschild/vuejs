@@ -6,12 +6,14 @@
         :checked="todo.completed"
         @change="$emit('complete-todo', todo.id)"
       />
-      {{ todo.title }}
+      <span class="todoText">
+        {{ todo.title }}
+      </span>
       <button @click="$emit('del-todo', todo.id)" class="del">x</button>
     </p>
   </div>
 </template>
-      
+
 <script>
 export default {
   name: "TodoItem",
@@ -25,7 +27,10 @@ export default {
   background: #f4f4f4;
   padding: 10px;
   border-bottom: 1 px #ccc dotted;
+  /* box-sizing: border-box; */
+  /* clear: right; */
 }
+
 .is-complete {
   text-decoration: line-through;
 }
@@ -37,5 +42,12 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   float: right;
+  text-align: right;
+}
+.todoText {
+  position: relative;
+  padding-right: 5rem;
+  padding-left: 1em;
+  clear: right;
 }
 </style>
