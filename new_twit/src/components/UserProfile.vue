@@ -43,9 +43,12 @@
 
 <script>
 import TwitItem from "./TwitItem";
-
+// import { reactive } from 'vue';
 export default {
  name: 'UserProfile',
+//  setup() {
+//    const state = reactive({})
+//  },
  components: { TwitItem },
   data() {
     return {
